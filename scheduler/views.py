@@ -1,6 +1,44 @@
-from django.shortcuts import render, redirect
-
+from django.shortcuts import render, redirect, get_object_or_404
+from scheduler.models import Character
+from scheduler.forms import AddCharacterForm
 # Create your views here.
+
+def roster_view(request):
+    roster = Character.objects.all()
+    context = {
+        "roster": roster,
+    }
+    return render(request, "scheduler/roster.html", context)
 
 def schedule_view(request):
     return redirect("home")
+
+
+def add_roster(request):
+    if request.method == "POST":
+        form = AddCharacterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    else:
+        form = AddCharacterForm()
+    context = {
+        "form": form,
+    }
+    return render(request, "scheduler/create.html", context)
+
+
+def edit_roster(request, id):
+    post = get_object_or_404(Character, id=id)
+    if request.method == "POST":
+        form = AddCharacterForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    else:
+        form = AddCharacterForm(instance=post)
+    context = {
+        "form": form,
+        "object": post,
+    }
+    return render(request, "scheduler/edit.html", context)

@@ -1,0 +1,85 @@
+header > nav {
+    display: grid;
+    grid-template-columns: 150px 150px 150px 150px 150px 150px;
+    grid-template-rows: 30px;
+}
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(60, 156, 156);
+}
+main {
+    padding: 12px;
+    background-color: rgb(192, 248, 248);
+}
+footer {
+    padding: 50px;
+    background-color: rgb(82, 170, 199);
+}
+img {
+    height: 200px;
+    width: 200px;
+}
+nav {
+    padding: 16px;
+    border-bottom: 1px solid grey;
+    background-color: lightskyblue;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: larger;
+}
+a {
+    text-decoration: none;
+    color: darkslateblue;
+}
+a:hover {
+    color: rgb(13, 197, 13);
+    font-size: x-large;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 250px 250px 250px 250px;
+    grid-template-rows: 400px 400px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    width: 50%;
+}
+
+td {
+    text-align: center;
+}
+
+.Paladin {
+    background-color: #F48CBA;
+}
+.Priest {
+    background-color: #FFFFFF;
+}
+.Death {
+    background-color: #ce4a60;
+}
+.Druid {
+    background-color: #E69138;
+}
+.Warlock {
+    background-color: #8788EE;
+}
+.Mage {
+    background-color: #3FC7EB;
+}
+.Shaman {
+    background-color: #3C78D8;
+}
+.Hunter {
+    background-color: #6AA84F;
+}
+.Rogue {
+    background-color: #FFF468;
+}
+.Warrior {
+    background-color: #A4815B;
+}

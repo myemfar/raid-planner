@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+    My Roster
+{% endblock title %}
+{% block content %}
+<header>
+    <h1>My Roster</h1>
+    <nav>
+        <a href="{% url 'add_roster' %}">Add to roster</a>
+    </nav>
+</header>
+<main>
+    <h1>
+        My roster main
+    </h1>
+    <div>
+        {% if roster.all|length < 1 %}
+        <p>This roster is empty</p>
+        {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Character</th>
+                    <th>Class</th>
+                    <th>Primary Role</th>
+                    <th>Secondary Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for raider in roster %}
+                <tr class="{{ raider.character_class }}">
+                    <td>{{ raider.name }} <a href="{% url 'edit_roster' raider.id %}">edit</a></td>
+                    <td>{{ raider.character_class }}</td>
+                    <td>{{ raider.primary_role }}</td>
+                    <td>{{ raider.secondary_role }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</main>
+{% endblock content %}
