@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from scheduler.models import Character
 from scheduler.forms import AddCharacterForm
 # Create your views here.
@@ -42,3 +43,15 @@ def edit_roster(request, id):
         "object": post,
     }
     return render(request, "scheduler/edit.html", context)
+
+def delete_roster(request, id):
+    post = get_object_or_404(Character, id=id)
+    context = {
+        "post": post
+    }
+    if request.method == "GET":
+        return render(request, "scheduler/delete.html", context)
+    elif request.method == "POST":
+        post.delete()
+        messages.success(request, "The character has been deleted successfully.")
+        return redirect("home")

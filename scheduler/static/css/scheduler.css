@@ -22,18 +22,17 @@ img {
 }
 nav {
     padding: 16px;
-    border-bottom: 1px solid grey;
+    border-bottom: 3px solid grey;
     background-color: lightskyblue;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: larger;
 }
 a {
     text-decoration: none;
-    color: darkslateblue;
+    color: rgb(15, 2, 99);
 }
 a:hover {
     color: rgb(13, 197, 13);
-    font-size: x-large;
 }
 .grid {
     display: grid;
@@ -46,7 +45,8 @@ table, th, td {
 }
 
 table {
-    width: 50%;
+    width: 75%;
+    background-color: rgb(255, 255, 255);
 }
 
 td {
@@ -82,4 +82,8 @@ td {
 }
 .Warrior {
     background-color: #A4815B;
+}
+
+tr {
+    background-color: #FFFFFF;
 }

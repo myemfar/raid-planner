@@ -5,18 +5,17 @@
 {% block content %}
 <header>
     <h1>My Roster</h1>
-    <nav>
-        <a href="{% url 'add_roster' %}">Add to roster</a>
-    </nav>
 </header>
 <main>
     <h1>
-        My roster main
+        Globo Gym
     </h1>
+    <p><a href="{% url 'add_roster' %}">Add to roster</a></p>
     <div>
         {% if roster.all|length < 1 %}
         <p>This roster is empty</p>
         {% else %}
+        <h2>Tanks</h2>
         <table>
             <thead>
                 <tr>
@@ -24,16 +23,76 @@
                     <th>Class</th>
                     <th>Primary Role</th>
                     <th>Secondary Role</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 {% for raider in roster %}
+                {% if raider.primary_role.role == "Tank" %}
                 <tr class="{{ raider.character_class }}">
-                    <td>{{ raider.name }} <a href="{% url 'edit_roster' raider.id %}">edit</a></td>
+                    <td>{{ raider.name }}</td>
                     <td>{{ raider.character_class }}</td>
-                    <td>{{ raider.primary_role }}</td>
+                    <td>{{ raider.primary_role.role }}</td>
                     <td>{{ raider.secondary_role }}</td>
+                    <td><a href="{% url 'edit_roster' raider.id %}">edit</a></td>
+                    <td><a href="{% url 'delete_roster' raider.id %}">delete</a></td>
                 </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>Healers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Character</th>
+                    <th>Class</th>
+                    <th>Primary Role</th>
+                    <th>Secondary Role</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for raider in roster %}
+                {% if raider.primary_role.role == "Healer" %}
+                <tr class="{{ raider.character_class }}">
+                    <td>{{ raider.name }}</td>
+                    <td>{{ raider.character_class }}</td>
+                    <td>{{ raider.primary_role.role }}</td>
+                    <td>{{ raider.secondary_role }}</td>
+                    <td><a href="{% url 'edit_roster' raider.id %}">edit</a></td>
+                    <td><a href="{% url 'delete_roster' raider.id %}">delete</a></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>DPS</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Character</th>
+                    <th>Class</th>
+                    <th>Primary Role</th>
+                    <th>Secondary Role</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for raider in roster %}
+                {% if raider.primary_role.role == "Ranged" or raider.primary_role.role == "Melee" %}
+                <tr class="{{ raider.character_class }}">
+                    <td>{{ raider.name }}</td>
+                    <td>{{ raider.character_class }}</td>
+                    <td>{{ raider.primary_role.role }}</td>
+                    <td>{{ raider.secondary_role }}</td>
+                    <td><a href="{% url 'edit_roster' raider.id %}">edit</a></td>
+                    <td><a href="{% url 'delete_roster' raider.id %}">delete</a></td>
+                </tr>
+                {% endif %}
                 {% endfor %}
             </tbody>
         </table>

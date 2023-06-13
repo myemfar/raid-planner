@@ -9,13 +9,13 @@
             <a href="{% url 'home' %}">View Roster</a>
             </div>
         </nav>
-
     </header>
     <main>
         <form method="post">
             {% csrf_token %}
+            <p>Are you sure you wish to remove {{character.name}}?</p>
             {{ form.as_p }}
-            <button>Edit</button>
+            <button>Delete</button>
           </form>
     </main>
 {% endblock content %}
