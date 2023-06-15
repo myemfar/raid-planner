@@ -10,25 +10,27 @@
     <h1>
         Globo Gym
     </h1>
-    <div>
+    <div class="row">
         {% if calendar.all|length < 1 %}
         <p>This calendar is empty</p>
         {% else %}
         {% for event in calendar %}
-        <table>
-            <thead>
-                <tr>
-                    <th>{{ event.name }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for raider in event.participants.all %}
-                <tr class="{{ raider.character_class }}">
-                    <td>{{ raider.name }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="column">
+            <table class="Calendar">
+                <thead>
+                    <tr>
+                        <th>{{ event.name }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for raider in event.participants.all %}
+                    <tr class="{{ raider.character_class }}">
+                        <td>{{ raider.name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
         {% endfor %}
         {% endif %}
     </div>

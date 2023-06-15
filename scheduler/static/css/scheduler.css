@@ -44,6 +44,16 @@ table, th, td {
     border: 1px solid black;
 }
 
+.Roster {
+    width: 75%;
+    background-color: #FFFFFF;
+}
+
+.Calendar {
+    width: 20%;
+    background-color: #000000;
+}
+
 table {
     width: 75%;
     background-color: rgb(255, 255, 255);
@@ -86,4 +96,15 @@ td {
 
 tr {
     background-color: #FFFFFF;
+}
+
+.column {
+    float: left;
+    width: 6%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
