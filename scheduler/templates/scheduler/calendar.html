@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+    My Calendar
+{% endblock title %}
+{% block content %}
+<header>
+    <h1>My Calendar</h1>
+</header>
+<main>
+    <h1>
+        Globo Gym
+    </h1>
+    <div>
+        {% if calendar.all|length < 1 %}
+        <p>This calendar is empty</p>
+        {% else %}
+        {% for event in calendar %}
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ event.name }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for raider in event.participants.all %}
+                <tr class="{{ raider.character_class }}">
+                    <td>{{ raider.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+        {% endif %}
+    </div>
+</main>
+{% endblock content %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from scheduler.models import Character
+from scheduler.models import Character, Event
 from scheduler.forms import AddCharacterForm
 # Create your views here.
 
@@ -19,7 +19,9 @@ def add_roster(request):
     if request.method == "POST":
         form = AddCharacterForm(request.POST)
         if form.is_valid():
-            form.save()
+            character = form.save(False)
+            character.owner = request.user
+            character.save()
             return redirect("home")
     else:
         form = AddCharacterForm()
@@ -55,3 +57,10 @@ def delete_roster(request, id):
         post.delete()
         messages.success(request, "The character has been deleted successfully.")
         return redirect("home")
+
+def view_calendar(request):
+    calendar = Event.objects.all()
+    context = {
+        "calendar": calendar
+    }
+    return render(request, "scheduler/calendar.html", context)

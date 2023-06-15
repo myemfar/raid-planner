@@ -1,6 +1,5 @@
 from django.contrib import admin
-from scheduler.models import WowClass, WowRole, Character, WowSecondaryRole
-
+from scheduler.models import WowClass, WowRole, Character, WowSecondaryRole, WowTeam, Event
 
 @admin.register(WowClass)
 class WowClassAdmin(admin.ModelAdmin):
@@ -27,4 +26,19 @@ class CharacterAdmin(admin.ModelAdmin):
         "primary_role",
         "secondary_role",
         "character_class",
+        "owner",
+        "team",
+    )
+
+@admin.register(WowTeam)
+class WoWTeamAdmin(admin.ModelAdmin):
+    list_display = (
+        "team",
+    )
+
+
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
     )

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 # Create your models here.
 
 class WowClass(models.Model):
@@ -20,6 +20,12 @@ class WowSecondaryRole(models.Model):
     def __str__(self):
         return self.secondary_role
 
+class WowTeam(models.Model):
+    team = models.CharField(max_length=35, null=True)
+
+    def __str__(self):
+        return self.team
+
 class Character(models.Model):
     name = models.CharField(max_length=35)
     primary_role = models.ForeignKey(
@@ -39,5 +45,21 @@ class Character(models.Model):
         related_name="character",
         on_delete=models.CASCADE,
     )
+    owner  = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="character",
+        on_delete=models.CASCADE,
+    )
+    team = models.ForeignKey(
+        WowTeam,
+        related_name="character",
+        on_delete=models.CASCADE,
+        null=True,
+    )
     def __str__(self):
         return self.name
+
+
+class Event(models.Model):
+    name = models.CharField(max_length=100)
+    participants = models.ManyToManyField(Character)

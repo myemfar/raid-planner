@@ -10,4 +10,5 @@ class AddCharacterForm(ModelForm):
             "primary_role",
             "secondary_role",
             "character_class",
+            "team",
         ]
